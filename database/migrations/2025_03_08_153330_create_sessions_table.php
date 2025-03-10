@@ -13,7 +13,11 @@ return new class extends Migration
     {
         Schema::create('sessions', function (Blueprint $table) {
             $table->id();
-            $table->timestamps();
+            $table->foreignId('event_id')->constrained('events');
+            $table->string('name');
+            $table->dateTime('start_time');
+            $table->dateTime('end_time');
+            $table->string('location');
         });
     }
 

@@ -13,7 +13,10 @@ return new class extends Migration
     {
         Schema::create('attendance', function (Blueprint $table) {
             $table->id();
-            $table->timestamps();
+            $table->foreignId('session_id')->constrained('sessions');
+            $table->foreignId('validated_by_user_id')->constrained('users');
+            $table->foreignId('attendee_id')->constrained('attendees');
+            $table->dateTime('check_in_time');
         });
     }
 

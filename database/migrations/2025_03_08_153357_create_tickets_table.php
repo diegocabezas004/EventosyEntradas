@@ -13,7 +13,11 @@ return new class extends Migration
     {
         Schema::create('tickets', function (Blueprint $table) {
             $table->id();
-            $table->timestamps();
+            $table->foreignId('ticket_type_id')->constrained('ticket_types');
+            $table->foreignId('attendee_id')->constrained('attendees');
+            $table->string('ticket_unique_code')->unique();
+            $table->dateTime('purchase_date');
+            $table->boolean('checked_in')->default(false);
         });
     }
 
